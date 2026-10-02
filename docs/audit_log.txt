@@ -1,0 +1,63 @@
+======================================================================
+AUDIT LOG  -  merge_dedupe.py (Scopus + Web of Science)
+Run: 2026-06-15 22:45:38
+Review: Remote sensing & geospatial approaches for multi-hazard
+        monitoring in Nepal
+======================================================================
+
+--- Scopus  (Scopus Search (2016-2025)) ---
+  01_Main_MultiHazard_Search_Article.csv      177  [Main/Article]
+  01_Main_MultiHazard_Search_Review.csv        17  [Main/Review]
+  02_Flood_Search_Article.csv                 104  [Flood/Article]
+  02_Flood_Search_Review.csv                    4  [Flood/Review]
+  03_Landslide_Search_Article.csv             136  [Landslide/Article]
+  03_Landslide_Search_Review.csv                1  [Landslide/Review]
+  04_GLOF_Search_Article.csv                  105  [GLOF/Article]
+  05_Drought_Search_Article.csv                23  [Drought/Article]
+--- WoS  (Web of Science Search (2016-2025)) ---
+  01_Main_MultiHazard_Search_Article.csv      267  [Main/Article]
+  01_Main_MultiHazard_Search_Review.csv         7  [Main/Review]
+  02_Flood_Search_Article.csv                 132  [Flood/Article]
+  02_Flood_Search_Review.csv                    7  [Flood/Review]
+  03_Landslide_Search_Article.csv             155  [Landslide/Article]
+  04_GLOF_Search_Article.csv                  207  [GLOF/Article]
+  05_Drought_Search_Article.csv                20  [Drought/Article]
+
+TOTAL RECORDS IDENTIFIED: 1362
+  by database: {'WoS': 795, 'Scopus': 567}
+  by stream:   {'Main': 468, 'GLOF': 312, 'Landslide': 292, 'Flood': 247, 'Drought': 43}
+
+DE-DUPLICATION (robust, cross-database: DOI -> Title+Year -> native id)
+  duplicates removed: 855
+     - matched on DOI: 843
+     - matched on TITLE+YEAR: 12
+  UNIQUE RECORDS REMAINING: 507
+  found in BOTH databases (Scopus & WoS): 248
+  Scopus-only: 76   WoS-only: 183
+  multi-stream (>=2 hazard searches): 308
+
+DOCUMENT-TYPE SPLIT (synthesis = Articles only)
+  PRIMARY synthesis set (Article): 484
+  REFERENCE set (Review/other): 23
+     - Article: 484
+     - Review: 18
+     - Book: 3
+     - Conference paper: 2
+
+----------------------------------------------------------------------
+RECONCILIATION NOTE (added after manuscript preparation)
+----------------------------------------------------------------------
+This log captures the automated merge_dedupe.py run only. Two further
+steps happened afterward, by hand, and are not reflected in the counts
+above:
+  - One additional record was reclassified from Article to a
+    non-article document type, revising "non-article types removed"
+    from 23 to 24 and "PRIMARY synthesis set" from 484 to 483.
+  - One further article, not indexed in Scopus or Web of Science, was
+    identified through citation snowballing and added to the in-scope
+    set on the same eligibility basis.
+The published PRISMA flow (1,362 identified -> 855 duplicates removed
+-> 507 unique -> 24 non-article removed -> 483 screened -> 228 excluded
++ 1 added via snowballing -> 256 in scope -> 100-article core) is the
+authoritative count. See docs/Methods_PRISMA_Log.docx and the
+manuscript's Figure 2.

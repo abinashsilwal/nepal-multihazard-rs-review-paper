@@ -1,0 +1,33 @@
+# ---- Licensed raw bibliographic data: DO NOT COMMIT ----
+# Scopus / Web of Science exports may not be redistributed.
+Scopus Search*/
+Web of Science Search*/
+*Scopus*Search*.csv
+*Scopus*Search*.xlsx
+*Web of Science*.csv
+**/savedrecs*
+# Files that contain abstracts or full records
+master_articles.csv
+master_records.csv
+reference_nonarticle.csv
+duplicates_removed.csv
+screening_work.csv
+*Master_Screening_Workbook*.xlsx
+*Full_Text_Extraction*.xlsx
+*.xls
+
+# ---- Build / OS / editor cruft ----
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+node_modules/
+.DS_Store
+Thumbs.db
+~$*
+*.tmp
+
+# ---- Generated previews / office locks ----
+*.pdf.tmp
+*.tmp
+.~lock.*#
+.~*
