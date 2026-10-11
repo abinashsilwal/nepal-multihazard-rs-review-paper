@@ -1,10 +1,10 @@
 cff-version: 1.2.0
 message: "If you use this pipeline or data, please cite it as below."
-title: "Multi-hazard remote sensing in Nepal — systematic review pipeline"
+title: "Multi-hazard remote sensing in Nepal: review pipeline"
 abstract: >-
-  Reproducible search, de-duplication, screening, and prioritisation workflow for a
-  systematic/hybrid review of remote-sensing and geospatial approaches to multi-hazard
-  monitoring in Nepal (2016–2025), covering Scopus and Web of Science.
+  Search, de-duplication, screening and ranking workflow for a review of remote sensing
+  and geospatial approaches to multi-hazard monitoring in Nepal (2016-2025), using
+  Scopus and Web of Science.
 type: software
 authors:
   - family-names: Silwal
@@ -18,10 +18,6 @@ keywords:
   - Nepal
   - Himalaya
   - systematic review
-  - PRISMA
-  - disaster risk reduction
 license: MIT
 version: "0.1.0"
 date-released: "2026-06-17"
-# repository-code: "https://github.com/abinashsilwal/nepal-multihazard-rs-review-paper"
-# doi: "10.5281/zenodo.XXXXXXX"                                   # add after Zenodo archive

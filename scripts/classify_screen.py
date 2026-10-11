@@ -1,20 +1,20 @@
 #!/usr/bin/env python3
 """
-classify_screen.py  -  stage-one screening pass, rule-based and reproducible.
+First-pass screening score based on keywords.
 
-For each primary article it derives, from the title, abstract and keywords,
-a provisional hazard/sensor/method/capability/maturity tagging, plus a
-relevance score (0-100) and a provisional decision (Include / Maybe / Exclude)
-with a confidence band and short reason.
+For each article this builds provisional hazard, sensor, method, capability and maturity
+tags from the title, abstract and keywords, and a relevance score from 0 to 100 with a
+provisional Include / Maybe / Exclude.
 
-The corpus is already pre-filtered (every record contains Nepal + a hazard + an
-RS term), so scoring rewards centrality - terms appearing in the title or
-keywords, Nepal place names, a concrete RS method - and penalises peripheral
-mentions (global/regional scope, Nepal absent from the title, no real method).
-This is only a first pass: borderline records (Maybe, or Low confidence) are
-the set that then gets read by eye and adjudicated in finalize_screening.py.
+Every record already matched Nepal, a hazard term and a remote-sensing term in the
+database search, so the score mostly rewards how central those terms are (in the title
+or keywords, a Nepal place name, a concrete method) and takes points off for passing
+mentions (global or regional scope, Nepal missing from the title, no method).
 
-Output: screening_work.csv (all columns, for review).
+This is only a first sort. Anything that is not a high-confidence Include is read by hand
+and the decision is made in finalize_screening.py.
+
+Reads master_articles.csv, writes screening_work.csv.
 """
 import os, re, pandas as pd
 WF=os.path.dirname(os.path.abspath(__file__))
@@ -154,5 +154,5 @@ print("confidence:",out["auto_confidence"].value_counts().to_dict())
 print("hazard tags:",out["tag_hazard"].value_counts().to_dict())
 print("capability:",out["tag_capability"].value_counts(dropna=False).to_dict())
 print("maturity:",out["tag_maturity"].value_counts().to_dict())
-print("need eye-review (Maybe or Low conf or Exclude):",
+print("to read by hand (not a high-confidence Include):",
       ((out["screen_auto"]!="Include")|(out["auto_confidence"]=="Low")).sum())

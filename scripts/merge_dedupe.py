@@ -1,42 +1,34 @@
 #!/usr/bin/env python3
 """
-merge_dedupe.py  (v2 - Scopus + Web of Science)
+Pool the Scopus and Web of Science exports and remove duplicates.
 
-Pools and de-duplicates the Scopus + Web of Science exports for the review
-"Remote sensing and geospatial approaches for multi-hazard monitoring in Nepal".
+Each export is mapped to one common set of columns. The Web of Science "Excel" export
+is saved with a .csv extension but is really an .xls file, so it is read with
+pandas.read_excel. That export leaves Document Type blank, so the type is taken from
+the file name (..._Article or ..._Review).
 
-Each database export is mapped to a common schema (Scopus is read as a native
-CSV; the Web of Science "Excel" export is saved with a .csv extension but is
-actually an .xls/OLE2 file, so it's read with pandas.read_excel). Records are
-tagged with source database, hazard search stream, and document type (WoS
-leaves 'Document Type' blank in this export, so type is inferred from the file
-name instead: *_Article -> Article, *_Review -> Review).
+Duplicates are matched on DOI first, then title + year, then the database's own id
+(Scopus EID, Web of Science UT).
 
-De-duplication runs across both databases using whichever key is available,
-in order: DOI, then title+year, then the native id (Scopus EID / WoS UT). That
-lets the same paper found in both databases be merged on a shared DOI or title
-even though their native ids differ, and keeps a record of the overlap.
+The two search folders are expected in the parent of scripts/. Output goes to scripts/:
+master_records.csv, master_articles.csv, reference_nonarticle.csv,
+duplicates_removed.csv and merge_log.txt.
 
-Outputs: master_records.csv, master_articles.csv, reference_nonarticle.csv,
-duplicates_removed.csv, audit_log.txt (PRISMA stage counts).
-
-To add another database later, append an entry to DB_SOURCES with its folder,
-a file->stream map, and a column-mapping function, then re-run.
-
-Run from this folder; its parent should hold the search-result folders.
+To add a database, add an entry to DB_SOURCES with its folder, a reader and a column
+mapping function.
 """
-import os, re, sys, datetime
+import os, re, sys
 import pandas as pd
 
-ROOT = os.path.dirname(os.path.abspath(__file__))   # this Review_Workflow folder
-PROJECT = os.path.dirname(ROOT)                      # parent (holds the search folders)
+ROOT = os.path.dirname(os.path.abspath(__file__))
+PROJECT = os.path.dirname(ROOT)                      # holds the search folders
 OUT_DIR = ROOT
 
-# Common schema columns we keep
+# columns kept from both databases
 KEEP = ["Authors","Title","Year","Source title","Document Type","DOI","Link",
         "Cited by","Abstract","Author Keywords","Index Keywords"]
 
-# ---- file -> (hazard stream, filename doc type) ----
+# file name -> (search stream, document type)
 STREAM_MAP = {
  "01_Main_MultiHazard_Search_Article": ("Main","Article"),
  "01_Main_MultiHazard_Search_Review":  ("Main","Review"),
@@ -48,13 +40,9 @@ STREAM_MAP = {
  "05_Drought_Search_Article":          ("Drought","Article"),
 }
 
-def stream_doctype(fname):
-    base = os.path.splitext(os.path.basename(fname))[0]
-    return STREAM_MAP.get(base, ("Unknown","Article"))
-
-# ---------- column mappers ----------
+# column mappers
 def map_scopus(df):
-    # Scopus already uses our schema names; add native id from EID.
+    # Scopus already uses these column names; the native id is the EID.
     out = pd.DataFrame()
     for c in KEEP:
         out[c] = df[c] if c in df.columns else ""
@@ -63,8 +51,7 @@ def map_scopus(df):
 
 _STOP={"a","an","and","as","at","but","by","for","from","in","of","on","or","the","to","vs","via","with"}
 def smart_title(s):
-    """Title-case an ALL-CAPS WoS journal name the way Scopus styles it
-    (lowercase interior conjunctions/prepositions)."""
+    """Title-case an ALL-CAPS WoS journal name the way Scopus writes it."""
     if not isinstance(s,str) or not s.isupper():
         return s
     words=s.split()
@@ -80,9 +67,9 @@ def map_wos(df):
     out["Title"]          = df.get("Article Title","")
     out["Year"]           = df.get("Publication Year","")
     src                   = df.get("Source Title","")
-    # WoS source titles are ALL CAPS; normalize to Scopus-style title case
+    # WoS journal names are all caps
     out["Source title"]   = src.fillna("").map(smart_title)
-    out["Document Type"]  = df.get("Document Type","")        # blank in this export
+    out["Document Type"]  = df.get("Document Type","")        # blank in these exports
     out["DOI"]            = df.get("DOI","")
     out["Link"]           = df.get("DOI Link","")
     out["Cited by"]       = df.get("Times Cited, All Databases","")
@@ -92,7 +79,7 @@ def map_wos(df):
     out["_nativeid"]      = df.get("UT (Unique WOS ID)","")
     return out
 
-# ---- database sources: (label, folder, reader, mapper) ----
+# (label, folder, reader, mapper)
 DB_SOURCES = [
  ("Scopus", os.path.join(PROJECT,"Scopus Search (2016-2025)"),
    lambda p: pd.read_csv(p, dtype=str, encoding="utf-8-sig"), map_scopus),
@@ -119,9 +106,9 @@ def main():
     for label, folder, reader, mapper in DB_SOURCES:
         log(f"--- {label}  ({folder.split(os.sep)[-1]}) ---")
         if not os.path.isdir(folder):
-            log(f"  (folder not found -> skipped)"); continue
+            log("  folder not found, skipped"); continue
         for base,(stream,dtype) in STREAM_MAP.items():
-            # find a file whose stem == base (any extension)
+            # file name without extension must match
             hit=None
             for fn in os.listdir(folder):
                 if os.path.splitext(fn)[0]==base:
@@ -151,7 +138,7 @@ def main():
     raw["_year"]=raw["Year"].fillna("").astype(str).str.strip()
     raw["_nid"]=raw["_nativeid"].fillna("").astype(str).str.strip()
 
-    # ---- robust cross-database dedupe (DOI -> Title+Year -> native id) ----
+    # de-duplicate across both databases
     groups={}            # key string -> gid
     next_gid=0
     gid_of=[]
@@ -175,7 +162,7 @@ def main():
     removed_idx={i for i,_ in removed}
     raw["_kept"]=~raw.index.isin(removed_idx)
 
-    # aggregate provenance per group
+    # which streams and databases each record was found in
     g_streams=raw.groupby("_gid")["_stream"].apply(lambda s:", ".join(sorted(set(s))))
     g_dbs    =raw.groupby("_gid")["_database"].apply(lambda s:", ".join(sorted(set(s))))
     g_nstream=raw.groupby("_gid")["_stream"].apply(lambda s:len(set(s)))
@@ -189,7 +176,7 @@ def main():
 
     n_uni=len(uni); n_dup=n_raw-n_uni
     log("")
-    log("DE-DUPLICATION (robust, cross-database: DOI -> Title+Year -> native id)")
+    log("DE-DUPLICATION (DOI, then title+year, then native id)")
     rc={}
     for _,r in removed: rc[r]=rc.get(r,0)+1
     log(f"  duplicates removed: {n_dup}")
@@ -201,13 +188,13 @@ def main():
         f"WoS-only: {(uni['databases_all']=='WoS').sum()}")
     log(f"  multi-stream (>=2 hazard searches): {(uni['n_streams_hit']>=2).sum()}")
 
-    # document class: real Document Type if present else filename doc type
+    # use the exported Document Type if there is one, otherwise the file-name type
     def doc_class(r):
         dt=str(r["Document Type"]).strip()
         return dt if dt and dt.lower()!="nan" else r["_filedoctype"]
     uni["doc_class"]=uni.apply(doc_class,axis=1)
 
-    # screening + tagging columns
+    # empty columns filled in later
     for c in ["screen_include","exclude_reason","tag_hazard","tag_sensor_platform",
               "tag_method","tag_capability","tag_maturity","notes"]:
         uni[c]=""
@@ -227,9 +214,9 @@ def main():
     primary.to_csv(os.path.join(OUT_DIR,"master_articles.csv"),index=False)
     reference.to_csv(os.path.join(OUT_DIR,"reference_nonarticle.csv"),index=False)
     log("")
-    log("DOCUMENT-TYPE SPLIT (synthesis = Articles only)")
-    log(f"  PRIMARY synthesis set (Article): {len(primary)}")
-    log(f"  REFERENCE set (Review/other): {len(reference)}")
+    log("DOCUMENT TYPES (only articles are screened)")
+    log(f"  articles: {len(primary)}")
+    log(f"  reviews and other types: {len(reference)}")
     for dt,c in master["doc_class"].fillna("(blank)").value_counts().items():
         log(f"     - {dt}: {c}")
 
@@ -238,16 +225,9 @@ def main():
     dup_df["matched_on"]=[r for _,r in removed]
     dup_df.to_csv(os.path.join(OUT_DIR,"duplicates_removed.csv"),index=False)
 
-    stamp=datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    head=["="*70,"AUDIT LOG  -  merge_dedupe.py (Scopus + Web of Science)",
-          f"Run: {stamp}",
-          "Review: Remote sensing & geospatial approaches for multi-hazard",
-          "        monitoring in Nepal","="*70,""]
-    with open(os.path.join(OUT_DIR,"audit_log.txt"),"w",encoding="utf-8") as f:
-        f.write("\n".join(head+LOG)+"\n")
-    log(""); log("OUTPUTS WRITTEN: master_records.csv, master_articles.csv, "
-                  "reference_nonarticle.csv, duplicates_removed.csv, audit_log.txt")
-    print("audit_log.txt written")
+    with open(os.path.join(OUT_DIR,"merge_log.txt"),"w",encoding="utf-8") as f:
+        f.write("\n".join(LOG)+"\n")
+    print("log written to merge_log.txt")
 
 if __name__=="__main__":
     main()
