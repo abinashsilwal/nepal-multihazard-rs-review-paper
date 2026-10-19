@@ -2,19 +2,19 @@ rank_overall,DOI,Title,Year,hazard,PriorityScore
 1,10.1016/j.scitotenv.2024.174701,"Glacial lake outburst floods threaten China-Nepal connectivity: Synergistic study of remote sensing, GIS and hydrodynamic modeling with regional implications",2024,Multi-hazard,91.0
 2,10.1016/j.nhres.2025.04.001,Unraveling the causes and impacts of increasing flood disasters in the kathmandu valley: Lessons from the unprecedented September 2024 floods,2025,Multi-hazard,90.9
 3,10.3390/w17101457,"Evolution of a Potentially Dangerous Glacial Lake on the Kanchenjunga Glacier, Nepal, Predictive Flood Models, and Prospective Community Response",2025,Multi-hazard,89.0
-4,10.1016/j.rse.2020.111983,InSAR-based detection method for mapping and monitoring slow-moving landslides in remote regions with steep and mountainous terrain: An application to Nepal,2020,Multi-hazard,86.5
+4,10.1016/j.rse.2020.111983,InSAR-based detection method for mapping and monitoring slow-moving landslides in remote regions with steep and mountainous terrain: An application to Nepal,2020,Landslide,86.5
 5,10.1016/j.ijdrr.2025.105231,"Quantitative assessment of the GLOF risk along China-Nepal transboundary basins by integrating remote sensing, machine learning, and hydrodynamic model",2025,Multi-hazard,85.5
-6,10.3390/rs16020356,Landslide Mapping and Causes of Landslides in the China–Nepal Transportation Corridor Based on Remote Sensing Technology,2024,Landslide,85.5
+6,10.3390/rs16020356,Landslide Mapping and Causes of Landslides in the China-Nepal Transportation Corridor Based on Remote Sensing Technology,2024,Landslide,85.5
 7,10.3390/ijgi12070286,"A GIS-Based Evacuation Route Planning in Flood-Susceptible Area of Siraha Municipality, Nepal",2023,Flood,85.2
-8,10.3390/rs16040725,Glacial Lake Changes and Risk Assessment in Rongxer Watershed of China–Nepal Economic Corridor,2024,Multi-hazard,81.5
-9,10.1002/esp.5539,"Himalayan hazard cascades – modern and medieval outburst floods in Pokhara, Nepal",2023,Multi-hazard,81.4
+8,10.3390/rs16040725,Glacial Lake Changes and Risk Assessment in Rongxer Watershed of China-Nepal Economic Corridor,2024,Multi-hazard,81.5
+9,10.1002/esp.5539,"Himalayan hazard cascades - modern and medieval outburst floods in Pokhara, Nepal",2023,Multi-hazard,81.4
 10,10.1007/s42452-025-07343-0,Landslide monitoring using PS-InSAR: a cost-effective approach for the Himalayas,2025,Landslide,79.2
 11,10.5194/hess-29-733-2025,Assessing national exposure to and impact of glacial lake outburst floods considering uncertainty under data sparsity,2025,Multi-hazard,79.0
 12,10.1002/rra.4413,Leveraging Remote Sensing for Exploring Climatic and Hydro-Geomorphic Linkages to Flooding: A Case of Bagmati River in Central Nepal,2025,Flood,78.8
 13,10.3390/su16167101,"Flood Susceptibility and Risk Mapping of Kathmandu Valley Watershed, Nepal",2024,Flood,78.6
-14,10.1002/esp.5775,Detection of slow-moving landslides through automated monitoring of surface deformation using Sentinel-2 satellite imagery,2024,Multi-hazard,78.2
+14,10.1002/esp.5775,Detection of slow-moving landslides through automated monitoring of surface deformation using Sentinel-2 satellite imagery,2024,Landslide,78.2
 15,10.3390/s18124436,Landslide susceptibility assessment using integrated deep learning algorithm along the china-nepal highway,2018,Landslide,77.7
-16,10.1016/j.accre.2024.03.006,Frequency and size change of ice–snow avalanches in the central Himalaya: A case from the Annapurna II glacier,2024,GLOF,77.3
+16,10.1016/j.accre.2024.03.006,Frequency and size change of ice-snow avalanches in the central Himalaya: A case from the Annapurna II glacier,2024,GLOF,77.3
 17,10.1175/EI-D-17-0022.1,Automated satellite-based landslide identification product for nepal,2019,Landslide,76.8
 18,10.3390/rs13183614,"Rapid glacier shrinkage and glacial lake expansion of a China-Nepal transboundary catchment in the central himalayas, between 1964 and 2020",2021,Multi-hazard,76.7
 19,10.5194/esurf-12-135-2024,Geomorphological and hydrological controls on sediment export in earthquake-affected catchments in the Nepal Himalaya,2024,Multi-hazard,76.6
@@ -47,9 +47,9 @@ rank_overall,DOI,Title,Year,hazard,PriorityScore
 46,10.3390/geohazards6040063,MiMapper: A Cloud-Based Multi-Hazard Mapping Tool for Nepal,2025,Multi-hazard,73.4
 47,10.1080/17538947.2024.2313857,Leveraging machine learning and open-source spatial datasets to enhance flood susceptibility mapping in transboundary river basin,2024,Flood,73.3
 50,10.1108/EC-07-2023-0374,Soft computing machine learning applications for assessing regional-scale landslide susceptibility in the Nepal Himalaya,2024,Landslide,72.7
-51,10.3390/land12122186,Landslide Susceptibility Assessment in Nepal’s Chure Region: A Geospatial Analysis,2023,Landslide,72.5
+51,10.3390/land12122186,Landslide Susceptibility Assessment in Nepal's Chure Region: A Geospatial Analysis,2023,Landslide,72.5
 53,10.1007/s10346-022-01915-6,Landslide detection from bitemporal satellite imagery using attention-based deep neural networks,2022,Landslide,72.0
-55,10.1007/s10064-019-01583-2,Mapping the susceptibility of rainfall and earthquake triggered landslides along China–Nepal highways,2020,Landslide,71.8
+55,10.1007/s10064-019-01583-2,Mapping the susceptibility of rainfall and earthquake triggered landslides along China-Nepal highways,2020,Landslide,71.8
 56,10.1007/s11430-021-1088-1,The relationship between three-dimensional coseismic displacement and distribution of coseismic landslides,2023,Landslide,71.7
 57,10.3390/su13105369,"Multi-hazard risk assessment of kathmandu valley, Nepal",2021,Multi-hazard,71.1
 58,10.1016/j.tecto.2024.230254,3-D coseismic displacement mapping of the 2015 Mw7.8 Gorkha earthquake using multi-viewed InSAR,2024,Landslide,71.0
@@ -69,8 +69,8 @@ rank_overall,DOI,Title,Year,hazard,PriorityScore
 82,10.17721/1728-2713.107.01,SUSCEPTIBILITY MODELLING OF LANDSLIDES IN CENTRAL NEPAL,2024,Landslide,69.0
 83,10.3390/rs11192284,"Use of very high-resolution optical data for landslide mapping and susceptibility analysis along the Karnali highway, Nepal",2019,Landslide,68.9
 85,10.1016/j.jaesx.2021.100061,A multidisciplinary approach of landslide characterization: A case of the Siwalik zone of Nepal Himalaya,2021,Landslide,68.5
-86,10.3390/hydrology12110283,Impact of Urbanization on Flooding and Risk Based on Hydrologic–Hydraulic Modeling and Analytic Hierarchy Process: A Case of Kathmandu Valley of Nepal,2025,Flood,68.4
-87,10.1016/j.pdisas.2022.100260,"“Flood risk modeling in southern Bagmati corridor, Nepal” (a study from Sarlahi and Rautahat, Nepal)",2022,Flood,68.3
+86,10.3390/hydrology12110283,Impact of Urbanization on Flooding and Risk Based on Hydrologic-Hydraulic Modeling and Analytic Hierarchy Process: A Case of Kathmandu Valley of Nepal,2025,Flood,68.4
+87,10.1016/j.pdisas.2022.100260,"""Flood risk modeling in southern Bagmati corridor, Nepal"" (a study from Sarlahi and Rautahat, Nepal)",2022,Flood,68.3
 88,10.1109/JSTARS.2017.2661802,Postearthquake Landslides Mapping from Landsat-8 Data for the 2015 Nepal Earthquake Using a Pixel-Based Change Detection Method,2017,Landslide,68.3
 89,10.1016/j.catena.2022.106627,Deforestation controls landlside susceptibility in Far-Western Nepal,2022,Landslide,67.6
 90,10.3390/w14244074,"Analyzing Rainfall Threshold for Shallow Landslides Using Physically Based Modeling in Rasuwa District, Nepal",2022,Landslide,67.5
@@ -86,16 +86,16 @@ rank_overall,DOI,Title,Year,hazard,PriorityScore
 128,10.1016/j.rineng.2025.104205,Evaluating different drought products for assessing drought and implications on agriculture in Nepal,2025,Drought,62.4
 131,10.1007/s12040-025-02664-5,"Status and changes in glaciers in the Upper Karnali Basin, West Nepal: Assessing topographic influences on area, fragmentation, and volume",2025,GLOF,61.9
 133,10.1016/j.nhres.2023.04.007,Spatiotemporal variation of potential evapotranspiration and meteorological drought based on multi-source data in Nepal,2023,Drought,61.5
-143,10.3390/rs13142692,Observations of winter ablation on glaciers in the mount everest region in 2020–2021,2021,GLOF,59.4
-146,10.3389/feart.2021.767317,Recent Evolution of Glaciers in the Manaslu Region of Nepal From Satellite Imagery and UAV Data (1970–2019),2022,GLOF,58.8
+143,10.3390/rs13142692,Observations of winter ablation on glaciers in the mount everest region in 2020-2021,2021,GLOF,59.4
+146,10.3389/feart.2021.767317,Recent Evolution of Glaciers in the Manaslu Region of Nepal From Satellite Imagery and UAV Data (1970-2019),2022,GLOF,58.8
 149,10.3389/feart.2021.623623,"Ice Cliff Dynamics of Debris-Covered Trakarding Glacier in the Rolwaling Region, Nepal Himalaya",2021,GLOF,57.8
 151,10.1007/s11069-024-07004-2,"Unlocking the mysteries of drought: integrating snowmelt dynamics into drought analysis at the Narayani River Basin, Nepal",2025,Drought,57.6
-156,10.3390/s19020430,Spatial and temporal variation of drought based on satellite derived vegetation condition index in Nepal from 1982–2015,2019,Drought,56.8
+156,10.3390/s19020430,Spatial and temporal variation of drought based on satellite derived vegetation condition index in Nepal from 1982-2015,2019,Drought,56.8
 164,10.1017/jog.2022.118,"Up-glacier propagation of surface lowering of Yala Glacier, Langtang Valley, Nepal Himalaya",2023,GLOF,55.9
 168,10.1016/j.rse.2018.03.036,"Topographic controls on the surging behaviour of Sabche Glacier, Nepal (1967 to 2017)",2018,GLOF,54.3
 171,10.3389/feart.2018.00012,"Spatial variability in patterns of glacier change across the manaslu range, central himalaya",2018,GLOF,53.8
 176,10.1016/j.gloplacha.2017.11.005,The distribution and hydrological significance of rock glaciers in the Nepalese Himalaya,2018,GLOF,53.5
-177,10.3390/rs14051098,Processing of VENµS Images of High Mountains: A Case Study for Cryospheric and Hydro-Climatic Applications in the Everest Region (Nepal),2022,GLOF,53.3
+177,10.3390/rs14051098,Processing of VENuS Images of High Mountains: A Case Study for Cryospheric and Hydro-Climatic Applications in the Everest Region (Nepal),2022,GLOF,53.3
 179,10.1017/jog.2017.47,"Quantifying ice cliff evolution with multi-temporal point clouds on the debris-covered Khumbu Glacier, Nepal",2017,GLOF,53.0
 195,10.3189/2016AoG71A063,"Factors controlling the accelerated expansion of Imja Lake, Mount Everest region, Nepal",2016,GLOF,51.4
 197,10.1017/jog.2016.120,"Spatial, seasonal and interannual variability of supraglacial ponds in the Langtang Valley of Nepal, 1999-2013",2017,GLOF,50.6
