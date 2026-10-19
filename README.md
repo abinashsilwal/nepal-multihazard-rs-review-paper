@@ -26,7 +26,9 @@ Scopus and Web of Science, 2016-2025, five queries (see `docs/search_queries.md`
 | Core set for the detailed synthesis | 100 |
 
 Exclusions: 160 not a Nepal study area, 52 off-topic, 16 not based on remote sensing.
-The core set has 39 landslide, 23 multi-hazard, 16 GLOF, 15 flood and 7 drought papers.
+The 256 in-scope records are 113 landslide, 69 multi-hazard, 34 GLOF and glacier, 33 flood
+and 7 drought papers. The core set has 39 landslide, 23 multi-hazard, 16 GLOF, 15 flood and
+7 drought papers.
 
 ## Folders
 
@@ -59,7 +61,8 @@ python scripts/rank_priority.py
 ```
 
 Intermediate files are written to `scripts/`. They contain abstracts, so they are
-listed in `.gitignore`.
+listed in `.gitignore`. The scripts give the first-pass tags; the final hazard and
+capability codes in `data/screening_decisions.csv` were checked by reading each record.
 
 ## Data and licence
 
