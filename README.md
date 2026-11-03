@@ -1,9 +1,9 @@
 # Multi-hazard remote sensing in Nepal: review pipeline
 
 Scripts and derived data for the literature search and screening behind the review
-"Remote sensing and geospatial approaches for multi-hazard monitoring in Nepal:
-documented capabilities, operational gaps, and lessons for mountain regions"
-(Silwal et al., under review).
+"Monitoring multi-hazard and cascading processes from space: a systematic review of
+implementation evidence and gaps in Nepal, with lessons for mountain regions"
+(Silwal et al., submitted).
 
 The raw Scopus and Web of Science exports are not included, because those databases do
 not allow them to be redistributed. Everything else needed to follow the screening and

@@ -1,10 +1,10 @@
 cff-version: 1.2.0
-message: "If you use this pipeline or data, please cite it as below."
+message: "If you use this pipeline or data, please cite the article below."
 title: "Multi-hazard remote sensing in Nepal: review pipeline"
 abstract: >-
-  Search, de-duplication, screening and ranking workflow for a review of remote sensing
-  and geospatial approaches to multi-hazard monitoring in Nepal (2016-2025), using
-  Scopus and Web of Science.
+  Search, de-duplication, screening and ranking workflow for a systematic review of
+  remote sensing and geospatial approaches to multi-hazard monitoring in Nepal
+  (2016-2025), using Scopus and Web of Science.
 type: software
 authors:
   - family-names: Silwal
@@ -21,3 +21,37 @@ keywords:
 license: MIT
 version: "0.1.0"
 date-released: "2026-06-17"
+preferred-citation:
+  type: article
+  title: "Monitoring multi-hazard and cascading processes from space: a systematic review of implementation evidence and gaps in Nepal, with lessons for mountain regions"
+  status: submitted
+  year: 2026
+  authors:
+    - family-names: Silwal
+      given-names: Abinash
+    - family-names: Shrestha
+      given-names: Binisha
+    - family-names: Chapagain
+      given-names: Prizma
+    - family-names: Gautam
+      given-names: Suyog
+    - family-names: Parajuli
+      given-names: Gaurav
+    - family-names: Regmi
+      given-names: Yogesh
+    - family-names: Giri
+      given-names: Chandra
+    - family-names: Rijal
+      given-names: Madhab
+    - family-names: Nepal
+      given-names: Samir
+    - family-names: Malla
+      given-names: Aayush
+    - family-names: Gautam
+      given-names: Suraj
+    - family-names: Khadka
+      given-names: Nitesh
+    - family-names: Ghimire
+      given-names: Subash
+    - family-names: Dahal
+      given-names: Kshitij
